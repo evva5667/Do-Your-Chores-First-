@@ -193,17 +193,18 @@ An interactive comic about effort, expectations — and one grandma who plays by
 
     function loadComic() {
         comicImages = [
-            "images/bob (01).png",           // 0 - Start of main story
-            "images/bob (02).png",           // 1
-            "images/bob (03).png",           // 2
-            "images/bob (04).png",           // 3 - CHOICE point
-            "images/bob 05 (01) NO-Part.png",  // 4 - First NO choice
-            "images/bob 05 (01) YES-Part.png", // 5 - First YES choice
-            "images/bob 06 (02) NO-Part.png",  // 6 - Second NO choice
-            "images/bob 06 (02) YES-Part.png", // 7 - Second YES choice
-            "images/bob 07 (03) NO-Part.png",  // 8 - Third NO choice (ending)
-            "images/bob 07 (03) YES-Part.png", // 9 - Third YES choice
-            "images/bob 08.png"              // 10 - Final ending
+            "images/bob (00).png",           // Initial image
+            "images/bob (01).png",           // 1 - Start of main story
+            "images/bob (02).png",           // 2
+            "images/bob (03).png",           // 3
+            "images/bob (04).png",           // 4 - CHOICE point
+            "images/bob 05 (01) NO-Part.png",  // 5 - First NO choice
+            "images/bob 05 (01) YES-Part.png", // 6 - First YES choice
+            "images/bob 06 (02) NO-Part.png",  // 7 - Second NO choice
+            "images/bob 06 (02) YES-Part.png", // 8 - Second YES choice
+            "images/bob 07 (03) NO-Part.png",  // 9 - Third NO choice (ending)
+            "images/bob 07 (03) YES-Part.png", // 10 - Third YES choice
+            "images/bob 08.png"              // 11 - Final ending
         ];
     }
 
@@ -223,7 +224,7 @@ An interactive comic about effort, expectations — and one grandma who plays by
             buttonClickSound.play();
         }
         loadComic();
-        currentImageIndex = 0;
+        currentImageIndex = 1; // Move to the first story image
         showImage(currentImageIndex);
         startBtn.style.display = "none";
         nextBtn.style.display = "inline-block";
@@ -355,12 +356,40 @@ An interactive comic about effort, expectations — and one grandma who plays by
         currentImageIndex = 0;
         showImage(currentImageIndex);
         state = "start";
-        startBtn.style.display = "none";
-        nextBtn.style.display = "inline-block";
+        startBtn.style.display = "inline-block";
+        nextBtn.style.display = "none";
         // Hide the decision state previous button when returning to start
         prevBtnDecision.style.display = "none";
         decisionBtns.style.display = "none";
         returnBtn.style.display = "none";
+    });
+
+    // Add click event listener for the comic section
+    document.querySelector('a[href="#comic"]').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('comic').scrollIntoView({ behavior: 'smooth' });
+        loadComic();
+        currentImageIndex = 0;
+        showImage(currentImageIndex);
+        startBtn.style.display = "inline-block";
+        nextBtn.style.display = "none";
+        prevBtnDecision.style.display = "none";
+        decisionBtns.style.display = "none";
+        state = "start";
+    });
+
+    // Add click event listener for the READ COMIC button
+    document.querySelector('.btn-secondary').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.getElementById('comic').scrollIntoView({ behavior: 'smooth' });
+        loadComic();
+        currentImageIndex = 0;
+        showImage(currentImageIndex);
+        startBtn.style.display = "inline-block";
+        nextBtn.style.display = "none";
+        prevBtnDecision.style.display = "none";
+        decisionBtns.style.display = "none";
+        state = "start";
     });
   </script>
 
